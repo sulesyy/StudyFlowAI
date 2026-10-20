@@ -1,0 +1,22 @@
+# Xcode
+.DS_Store
+build/
+DerivedData/
+*.xcuserstate
+*.xcuserdatad/
+xcuserdata/
+*.xccheckout
+*.xcscmblueprint
+*.moved-aside
+*.hmap
+
+# Secrets and local backend files
+.env
+.env.*
+!.env.example
+backend/.env
+node_modules/
+
+# Legacy copies
+StudyFlowAI.xcodeproj.zip
+FlashcardView.swif.swift
