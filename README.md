@@ -2,12 +2,6 @@
 
 StudyFlow AI is a SwiftUI study-planning app for iOS. It helps students organize courses and exams, stay on top of daily study tasks, track progress, and turn learning materials into interactive study tools.
 
-## Screenshots
-
-| Today | Course details | AI study workspace |
-|---|---|---|
-| ![Today dashboard](screenshots/dashboard.png) | ![Course details](screenshots/course-detail.png) | ![AI study workspace](screenshots/ai-workspace.png) |
-
 ## Features
 
 - Create courses, add topics, set exam dates, and organize daily study tasks.
@@ -51,3 +45,10 @@ Keep the proxy terminal open while using the app. Check its status at `http://12
 ## Deployment note
 
 The included Node.js proxy is intended for local development and should not be exposed directly to the public internet. Before distributing the app to real users, deploy the proxy behind HTTPS and add user authentication and abuse protection. A physical iPhone also needs a reachable HTTPS proxy address; `127.0.0.1` only works for the Mac-hosted simulator.
+
+## Screenshots
+
+| Today | Course details | AI study workspace |
+|---|---|---|
+| ![Today dashboard](screenshots/dashboard.png) | ![Course details](screenshots/course-detail.png) | ![AI study workspace](screenshots/ai-workspace.png) |
+
