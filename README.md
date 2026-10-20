@@ -1,54 +1,53 @@
 # StudyFlow AI
 
-StudyFlow AI, ders ve sınav hazırlığını planlamak için SwiftUI ile geliştirilmiş bir iOS uygulamasıdır. Derslerini ve konularını takip eder; AI ile özet, quiz ve çalışma kartları üretir.
+StudyFlow AI is a SwiftUI study-planning app for iOS. It helps students organize courses and exams, stay on top of daily study tasks, track progress, and turn learning materials into interactive study tools.
 
-## Ekran görüntüleri
+## Screenshots
 
-| Bugün | Ders detayı | AI çalışma alanı |
+| Today | Course details | AI study workspace |
 |---|---|---|
-| ![Bugün ekranı](screenshots/dashboard.png) | ![Ders detayı](screenshots/course-detail.png) | ![AI çalışma alanı](screenshots/ai-workspace.png) |
+| ![Today dashboard](screenshots/dashboard.png) | ![Course details](screenshots/course-detail.png) | ![AI study workspace](screenshots/ai-workspace.png) |
 
-## Özellikler
+## Features
 
-- Ders, konu, sınav tarihi ve çalışma planı takibi
-- Günlük görevler, ilerleme istatistikleri ve çalışma serisi
-- AI ile konu özeti, çoktan seçmeli quiz ve çalışma kartları
-- PDF notlarından metin çıkarma; taranmış sayfalarda cihaz üzerinde Apple Vision OCR
-- PDF içeriğiyle AI özeti ve sohbet
-- Çevrimdışı erişim için oluşturulan içerikleri kaydetme
-- Odak zamanlayıcısı, hatırlatıcılar ve yedekleme
+- Create courses, add topics, set exam dates, and organize daily study tasks.
+- Track completed topics, course progress, upcoming exams, and study streaks.
+- Generate concise topic summaries, multiple-choice quizzes, and flashcards with AI.
+- Save generated materials for offline access and review flashcards with spaced repetition.
+- Import PDFs and extract selectable text. Scanned pages can be recognized on-device with Apple Vision OCR.
+- Generate AI summaries from PDF notes and ask questions about their contents.
+- Use a focus timer, schedule study reminders, and back up study data.
 
-## Gereksinimler
+## Technology
 
-- Xcode 16 veya üstü
-- iOS 18.2 veya üstü
-- AI özellikleri için Node.js 18 veya üstü ve Google AI Studio Gemini API anahtarı
+- SwiftUI for the iOS app interface.
+- On-device local storage for courses, topics, and study progress.
+- A Node.js development proxy for Google Gemini API requests.
+- Apple Vision OCR for text recognition in scanned PDF pages.
 
-## Xcode ile çalıştırma
+The Gemini API key must stay on the proxy server. Configure it in `backend/.env`, which is ignored by Git. The repository includes `backend/.env.example` as a template. Never commit a real API key.
 
-1. `StudyFlowAI.xcodeproj` dosyasını Xcode’da aç.
-2. `StudyFlowAI` şemasını ve bir iOS Simulator cihazını seçip **Run** düğmesine bas.
-3. AI özelliklerini kullanmak için `backend` klasöründeki proxy’yi başlat:
+## Requirements
 
-   ```sh
-   cd backend
-   cp .env.example .env
-   ```
+- Xcode 16 or later
+- iOS 18.2 or later
+- Node.js 18 or later for AI features
+- A Google AI Studio Gemini API key
 
-4. `backend/.env` dosyasını açıp `GEMINI_API_KEY` satırına kendi anahtarını ekle. Ardından:
+## Run the app
 
-   ```sh
-   node server.mjs
-   ```
+Open `StudyFlowAI.xcodeproj` in Xcode, select the `StudyFlowAI` scheme and an iOS Simulator device, then run the app.
 
-5. `http://127.0.0.1:3000/health` adresinde proxy durumunu kontrol et. Terminal penceresi açık kalmalıdır.
+To enable AI features in the simulator, create `backend/.env` from the example file, add your Gemini API key, and start the proxy:
 
-API anahtarını kaynak koduna veya GitHub’a ekleme. `backend/.env` Git tarafından yok sayılır; yalnızca `.env.example` örnek dosyasını paylaş.
+```sh
+cd backend
+cp .env.example .env
+node server.mjs
+```
 
-## Gerçek iPhone’da AI kullanımı
+Keep the proxy terminal open while using the app. Check its status at `http://127.0.0.1:3000/health`.
 
-Simülatördeki `127.0.0.1` adresi Mac’e ulaşır; fiziksel iPhone’da ise telefonun kendisini gösterir. Gerçek cihazda AI için proxy’yi HTTPS arkasında barındır ve Xcode’daki `AI_PROXY_URL` ayarını bu HTTPS adresine yönlendir. API anahtarını uygulamaya koyma.
+## Deployment note
 
-## Yayına hazırlık
-
-`backend/server.mjs` yerel geliştirme proxy’sidir; internete doğrudan açılmamalıdır. Gerçek kullanıcı dağıtımından önce güvenli HTTPS barındırma, kullanıcı doğrulama ve kötüye kullanım sınırları eklenmelidir. App Store dağıtımı ayrıca gizlilik politikası, mağaza materyalleri ve gerçek cihaz kontrolleri gerektirir.
+The included Node.js proxy is intended for local development and should not be exposed directly to the public internet. Before distributing the app to real users, deploy the proxy behind HTTPS and add user authentication and abuse protection. A physical iPhone also needs a reachable HTTPS proxy address; `127.0.0.1` only works for the Mac-hosted simulator.
